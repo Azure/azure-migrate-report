@@ -21,15 +21,15 @@ This article describes the procedure to run Azure Migrate Export without customi
 Azure Migrate Export without customization quickly generates required output with certain assumptions such as all Machines discovered are in-scope and belong to Production environment. 
 Follow the below steps:
 1. Download the Azure Migrate Export utility package and extract the contents on the package. [Learn More](#how-to-get-azure-migrate-export-utility-package) about how to get Azure Migrate Export Utility Package.
-2. Run Azure Migrate Export application.
-3. To generate the Discovery and assessment reports with customization, select **Workflow Option** as Both.
-4. In **Source Appliance**, select the source of servers. By default, all three sources, namely VMware, Hyper-V, and Physical are selected.
+2. Run the Azure Migrate Export application.
+3. To generate the Discovery and assessment reports with customization, select **Workflow** option as **Both**.
+4. In **Azure Migrate source appliance**, select the source of servers. By default, all three sources, namely VMware, Hyper-V, and Physical are selected.
 5. Enter the project identifier details such as Tenant ID, Subscription ID, Resource Group name, Discovery Site name and assessment project name. [Learn More](#how-to-find-project-discovery-and-assessment-parameters) on where to find the Project Identifier.
 6. Select the **Target location** where you want to modernize your resources, the **Assessment duration** for which you want to run assessment, and select **Submit**.
 7. Users will now be prompted to authenticate Azure access.
 8. Once the user is authenticated in Azure, the discovery and assessment modules both run in sequence to generate discovery Report, Assessment Core Report, Assessment Opportunity Report and Assessment Clash Report. [Learn More](#discovery-and-assessment-report-analysis) about highlights of the report.
    > [!Note] 
-   > Assessment typically runs in 1-2 hours but may take more time to run depending on the size of environment.
+   > An assessment typically runs in 1-2 hours but may take more time to run depending on the size of environment.
 9. Users can choose to customize assessment report for removing required duplicates in assessment. [Learn More](#how-to-customize-assessment-core-report) about how to customize assessment reports.
 10. Run the “Azure_Migrate_Export.pbit” PowerBI template provided in the Utility package.
 11. Provide the path of utility package where all the reports are generated and click Load. [Learn More](#how-to--find-basepath) about base Path.

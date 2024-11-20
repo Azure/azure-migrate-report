@@ -91,15 +91,15 @@ SQL assessment is a three-step process:
   2. The remaining SQL Instances that cannot be migrated to Azure SQL MI due to migration blockers (details of which are available in opportunity report) are then assessed for migration to SQL server in Azure VM (sizing the instance for Azure VM, using the recommended migration approach). Details of such SQL Server instances can be found in “SQL_IaaS_Instance_Rehost_Perf” tab in Assessment Core Report.
   Only Premium disks are recommended for Azure VMs that run SQL Instances on them.
   3. The remaining servers whose SQL instances are not ready for the above two migration/ modernization approaches are then assessed for readiness for SQL Server on Azure VM – using a Lift and Shift approach ie migrating an entire server not just individual SQL Server Instances running in them. Details of such SQL Server can be found in “SQL_IaaS_Server_Rehost_Perf” tab in Assessment Core report. [Learn more](https://learn.microsoft.com/en-us/azure/migrate/concepts-azure-sql-assessment-calculation) about the SQL Server assessment logic.
-### Web app Assessment
+### Web app assessment
 Web app assessment is a two-step process:
-  1. All the in-scope discovered .NET Web apps running on IIS Web Servers on Windows Server are first assessed for migration to Azure App Service. Details of the Web app that are ready for Azure App service can be found in “WebApp_PaaS” tab in Assessment Core Report.
+  1. All the in-scope discovered .NET Web apps running on IIS Web Servers on Windows Server are first assessed for migration to Azure App Service. Details of the Web app that are ready for Azure App service can be found in **WebApp_PaaS** tab in Assessment Core Report.
   2. The remaining servers whose web app/web apps cannot be migrated to Azure App Service due to migration blockers (details of which are available in opportunity report) are then assessed for Azure VM. Details of such server can be found in “WebApp_IaaS_Server_Rehost_Perf” tab in Assessment Core Report. [Learn more](https://learn.microsoft.com/en-us/azure/migrate/concepts-azure-webapps-assessment-calculation) about the App Service assessment logic.
-### Assessment of Servers containing SQL Services
+### Assessment of servers containing SQL Services
 All in-scope discovered machines  containing SQL Services such as SQL Server Integration services, SQL Server Reporting Services and SQL Server Analysis Services are assessed for migration to Azure VM – using a Lift and Shift approach. Details of such machines can be found in “VM_SS_IaaS_Server_Rehost_Perf” tab in Assessment Core Report.
-### VM Assessment
+### VM assessment
 The in-scope discovered Windows and Linux servers that do not have SQL Server, Web app, or SQL Services present on them are assessed for migration to Azure VM. Details of such machines can be found in “VM_IaaS_Server_Rehost_Perf” tab in Assessment Core Report. [Learn more](https://learn.microsoft.com/en-us/azure/migrate/concepts-assessment-calculation) about the Azure VM assessment logic.
-### AVS Assessment
+### AVS assessment
 The in-scope discovered machines that are running on VMware are assessed AVS assessment. AVS is an alternate approach to PaaS preferred migration where customer can choose to rehost their VMware environment on Azure VMware Services. Details of such machines can be found in “AVS_Summary” and “AVS_IaaS_Rehost_Perf” tab in Assessment Opportunity Core Report. [Learn more](https://learn.microsoft.com/en-us/azure/migrate/concepts-azure-vmware-solution-assessment-calculation) about the AVS assessment logic.
 ### Azure Site Recovery and Backup
 Azure Site Recovery and backup cost is only computed for the following workloads:
@@ -122,13 +122,13 @@ Follow the below steps:
 1. Download the Azure Migrate Export utility package and extract the contents on the package. [Learn More](#how-to-get-azure-migrate-export-utility-package) about how to get Azure Migrate Export Utility Package.
 2. Run Azure Migrate Export application.
 3. To generate the Discovery and assessment reports with customization, select **Workflow Option** as Both.
-4. In **Source Appliance**, select the source of servers. By default, all three sources, namely VMware, Hyper-V, and Physical are selected.
-5. Enter the project identifier details such as Tenant ID, Subscription ID, Resource Group name, Discovery Site name and assessment project name. [Learn More](#how-to-find-project-discovery-and-assessment-parameters) on where to find the Project Identifier.
+4. In **Azure Migrate source appliance**, select the source of servers. By default, all three sources, namely VMware, Hyper-V, and Physical are selected.
+5. Enter the project identifier details such as Tenant ID, Subscription ID, Resource Group name, Discovery Site name, and assessment project name. [Learn More](#how-to-find-project-discovery-and-assessment-parameters) on where to find the Project Identifier.
 6. Select the **Target location** where you want to modernize your resources, the **Assessment duration** for which you want to run assessment, and select **Submit**.
 7. Users will now be prompted to authenticate Azure access.
 8. Once the user is authenticated in Azure, the discovery and assessment modules both run in sequence to generate discovery Report, Assessment Core Report, Assessment Opportunity Report and Assessment Clash Report. [Learn More](#discovery-and-assessment-report-analysis) about highlights of the report.
    > [!Note] 
-   > Assessment typically runs in 1-2 hours but may take more time to run depending on the size of environment.
+   > An assessment typically runs in 1-2 hours but may take more time to run depending on the size of environment.
 9. Users can choose to customize assessment report for removing required duplicates in assessment. [Learn More](#how-to-customize-assessment-core-report) about how to customize assessment reports.
 10. Run the “Azure_Migrate_Export.pbit” PowerBI template provided in the Utility package.
 11. Provide the path of utility package where all the reports are generated and click Load. [Learn More](#how-to--find-basepath) about base Path.
@@ -141,23 +141,23 @@ Follow the below steps:
 ### To run AME with customization, users need to first generate the discovery report, apply customization, and then run assessment. Follow these steps:
 1. Download the Azure Migrate Export utility package and extract the contents on the package. [Learn More](#how-to-get-azure-migrate-export-utility-package) about how to get Azure Migrate Export Utility Package.
 2. Run Azure Migrate Export application.
-3. On the console, Select Workflow Option as Discovery.
-4. In **Source Appliance**, select the source of servers. By default, all three sources, namely VMware, Hyper-V, and Physical are selected.
-5. Enter the project identifier details such as Tenant ID, Subscription ID, Resource Group name, and Discovery Site name. [Learn More](#how-to-find-project-discovery-and-assessment-parameters) on where to find the Project Identifier.
-6. Select the Target location where you want to move your resources and select **Submit**.
-7. Users will now be prompted to authenticate for Azure access.
-8. Once the user is authenticated in Azure, the discovery runs to generate the “Discovery_VMs” report which provides details of all servers discovered in your environment from the selected source type.
+3. Enter the project identifier details such as Tenant ID, Subscription name, Resource Group name, and Azure Migrate project name. [Learn More](#how-to-find-project-discovery-and-assessment-parameters) on where to find the Project Identifier. Select **Next**.
+3. In the **Configuration** tab, do the following:
+   1. In **Azure Migrate source appliance**, select the source of servers. By default, all three sources, namely VMware, Hyper-V, and Physical are selected.
+   1. In **Workflow**, select **Discovery** from the **Custom** drop-down. Select **Submit**.
+7. Users will now be prompted to authenticate Azure access.
+3. On the console, select **Workflow** option as **Discovery**. Select **Next**.\
+the discovery runs to generate the “Discovery_VMs” report which provides details of all servers discovered in your environment from the selected source type.
 9. Apply the required customizations on the Discovery report and save the file. [Learn More](#how-to-customize-discovery-report) on how to customize discovery file.
-10. On the console, select Workflow option as Assessment.
-11. Enter the project identifiers such as Tenant ID, Subscription ID, Resource Group name, and Assessment project name. [Learn More](#how-to-find-project-discovery-and-assessment-parameters) on where to find the project identifiers.
-12. Select the Assessment duration for which you want to run assessment and click **Submit**.
-13. Users will now be prompted to authenticate Azure access.
-14. Once the user is authenticated in Azure, the assessment runs to generate Core Report, Opportunity Report and Clash Report. [Learn More](#discovery-and-assessment-report-analysis) about highlights of the report.
+10. On the console, select **Assess**.
+6. Select the **Target region** where you want to move your resources, **Currency**, **Assessment duration** for which you want to run assessment, and **Migration strategy**. Select **Submit**.
+7. Users will now be prompted to authenticate for Azure access.
+14. Once the user is authenticated in Azure, the assessment runs to generate Core Report, Opportunity Report, and Clash Report. [Learn More](#discovery-and-assessment-report-analysis) about highlights of the report.
    > [!Note]
    > An assessment typically runs in 1-2 hours but may take more time depending on the size of environment.
 15. Users can choose to customize assessment reports for removing required duplicates in assessment. [Learn More](#how-to-customize-assessment-core-report) about how to customize assessment reports.
-16. Run the “Azure_Migrate_Export.pbit” PowerBI template provided in the Utility package.
-17. Provide the path of utility package where all the reports are generated and click Load. [Learn More](#how-to--find-basepath) about the base Path.
+16. Run the *Azure_Migration_and_Modernization* PowerBI template provided in the Utility package.
+17. Provide the path of utility package where all the reports are generated and click Load. [Learn More](#how-to--find-basepath) about the base path.
 18. Once the data is loaded, Users can now choose to change static data in PowerBI report to customize as per requirement. [Learn More](#how-to-customize-powerbi-report) about how to customize PowerBI Report.
 19. After finalizing the slides, publish the PowerBI report on your workspace.
    ![Screenshot of PowerBI workspace.](./.media/workspace-report.png)

@@ -16,8 +16,9 @@ Azure Migrate Export (AME) generates the following excel reports to provide disc
 ## Discovered VMs
 File Path: ```\AzMigExport\All_Discovered-VMs-Report\Discovered_VMs.xlsx```
 
-Discovered VMs report contains details of all VMs and servers that are discovered in customer’s environment from the selected source type or appliance. The report also outlines the type of workload a VM is running.
+The Discovered VMs report contains details of all VMs and servers that are discovered in customer’s environment from the selected source type or appliance. The report also outlines the type of workload a VM is running.
 Kindly refer to below dictionary for more details:
+
 **Column Name** | **Details**
 --- | ---
 Machine | Name of the discovered machine. 
@@ -40,10 +41,10 @@ Firstdiscoverytime |	Date and time when collection of discovery data began by Az
 EnvironmentType	| This column is for user inputs. <br></br> Users can categorize the servers into dev and prod environments by entering information into this column so that adequate pricing considerations are applied at the time of assessment. Servers where environment type cells are blank are considered as production servers by default. <br></br> Permitted User input values: “Dev” and “Prod”. [Learn More](how-to-customize-discovery-report) about how to customize discovery report.
 Target | Region	Target regions selected by user while running discovery on AME.
 
-## Assessment Core Report
+## Assessment Core report
 File Path: ```\AzMigExport\Core-Report\AzureMigrate_Assessment_Core_Report.xlsx```.
 
-Assessment Core report contains all the information about servers and workloads and the targets that are ready to be migrated to Azure with minimal changes. The focus here is on a PaaS first approach such that if the customer’s SQL Server instances or .NET Web Apps running on IIS web servers are ready for Azure SQL Managed Instance and Azure App Service respectively, they will be considered for those targets unless scoped out of the consideration set before running Assessment module in AME. SQL Server instance and .NET Apps that are not ready for PaaS, as well as remaining workloads and servers, including those running other SQL Services such as SQL Server Analysis Services, are sized for Azure VM. In addition to SKUs and ready to be migrated workloads, core report covers estimated prices considering various options considering offers such as Pay-as-you-go, reservations, and Azure Hybrid Benefit for Windows and SQL. These are run on in-scope servers. 
+The Assessment Core report contains all the information about servers and workloads and the targets that are ready to be migrated to Azure with minimal changes. The focus here is on a PaaS first approach such that if the customer’s SQL Server instances or .NET Web Apps running on IIS web servers are ready for Azure SQL Managed Instance and Azure App Service respectively, they will be considered for those targets unless scoped out of the consideration set before running Assessment module in AME. SQL Server instance and .NET Apps that are not ready for PaaS, as well as remaining workloads and servers, including those running other SQL Services such as SQL Server Analysis Services, are sized for Azure VM. In addition to SKUs and ready to be migrated workloads, core report covers estimated prices considering various options considering offers such as Pay-as-you-go, reservations, and Azure Hybrid Benefit for Windows and SQL. These are run on in-scope servers. 
 
 The definition of reports that are part of Assessment Core report are as follows: 
 
@@ -64,7 +65,7 @@ VM_IaaS_Server_Rehost_As-is |	The in-scope VMs that doesn’t have SQL Server, W
 SQL_All_Servers |	The report contains details of perf-based assessment of all in-scope SQL Servers, its recommended target, readiness warnings (if any), performance properties of SQL Instance, and various estimated cost considering offers such as Pay-as-you-go, reservations, and Azure Hybrid Benefit for both Dev and Prod environment.
 AllVM_IaaS_Server_Rehost_Perf |	The report contains details of perf-based assessment of all in-scope VMs, its readiness warnings (if any), recommended Azure VM Configuration, performance properties of VM, and estimated cost on Azure for both Dev and Prod environment.
 
-## Assessment Opportunity Report
+## Assessment Opportunity report
 File Path: ``` \AzMigExport\Opportunity-Report\AzureMigrate_Assessment_Opportunity_Report.xlsx```.
 The opportunity report helps one identify additional modernization opportunities for SQL Server instances and .NET Web apps, by indicating what blockers or issues customers must address to be able to fully modernize SQL Server and .NET workloads. 
 Additionally, Opportunity report also covers details of alternate migration paths for VMware based servers, by indicating cost, readiness and SKUs for Azure VMware Solution (AVS). These are run on in-scope servers. 
@@ -80,20 +81,20 @@ SQL Issues & Warnings |	The report contains details of in-scope SQL Server insta
 Webapp Opportunity |	The report contains details of in-scope Web app that cannot be migrated to Azure App Service. The report highlights details of issues and warnings that needs to be remediated to make Web app ready for Azure App Service. 
 VM Opportunity_Perf |	The report contains details of in-scope VMs that cannot be migrated to Azure. The report highlights details of issues and warnings that needs to be remediated to make VM ready for Azure VM.
 
-## Assessment Clash Report
+## Assessment Clash report
 File Path: ```\AzMigExport\Clash-Report\AzureMigrate_Assessment_Clash_Report.xlsx```.
 
 The Clash report helps to identify duplicates within the Core report. With this report, users can customize the Assessment Core report by deleting unwanted servers in an assessment. This helps a user generate precise estimated cost of customer’s workloads in Azure.
 
 The Clash report highlights count and details of assessments conducted for a machine that is sized for assessments.
 
-### Interpreting Clash Report
+### Interpreting Clash report
 
 ![Screenshot of clash report.](./.media/clash-report.png)
 
 In the example above, the machine CRMSQLVM14 has two entries in SQL_IaaS_Instance_Rehost_Perf tab and one entry in SQL_MI_PaaS tab, and one entry in SQL_IaaS_Server_Rehost_Perf tab. This report can be used as a tally to understand a summary of all the in-scope machines and the user can customize the Assessment Core report to get the required cost estimate output from PowerBI. [Learn More](#how-to-customize-assessment-core-report) on how to customize the Assessment Core Report.
 
-## Understanding PowerBI Report
+## Understanding PowerBI report
 The details of each slide in data populated PowerBI report is as follows: 
 **Slide** | **Details**
 --- | ---
